@@ -1,0 +1,21 @@
+.pio\build\nucleo_l476rg\FrameworkMbed\features\nanostack\coap-service\source\coap_message_handler.o: \
+ C:\Users\SineirMarcos\.platformio\packages\framework-mbed\features\nanostack\coap-service\source\coap_message_handler.c \
+ .pio/build/nucleo_l476rg/mbed_config.h \
+ C:/Users/SINEIR~1/PLATFO~1/packages/FRAMEW~4/features/FRAMEW~1/NANOST~1/MBED-C~1/nsdynmemLIB.h \
+ C:/Users/SINEIR~1/PLATFO~1/packages/FRAMEW~4/features/FRAMEW~1/NANOST~1/MBED-C~1/ns_types.h \
+ C:/Users/SINEIR~1/PLATFO~1/packages/FRAMEW~4/features/NANOST~1/COAP-S~1/source/include/coap_service_api_internal.h \
+ C:/Users/SINEIR~1/PLATFO~1/packages/FRAMEW~4/features/NANOST~1/COAP-S~1/source/include/coap_message_handler.h \
+ C:/Users/SINEIR~1/PLATFO~1/packages/FRAMEW~4/features/FRAMEW~1/MBED-C~3/mbed-coap/sn_coap_header.h \
+ C:/Users/SINEIR~1/PLATFO~1/packages/FRAMEW~4/features/FRAMEW~1/NANOST~1/MBED-C~1/ns_list.h \
+ C:/Users/SINEIR~1/PLATFO~1/packages/FRAMEW~4/features/NANOST~1/COAP-S~1/source/include/coap_message_handler.h \
+ C:/Users/SINEIR~1/PLATFO~1/packages/FRAMEW~4/features/FRAMEW~1/MBED-C~3/mbed-coap/sn_coap_protocol.h \
+ C:/Users/SINEIR~1/PLATFO~1/packages/FRAMEW~4/features/FRAMEW~1/MBED-C~3/mbed-coap/sn_coap_header.h \
+ C:/Users/SINEIR~1/PLATFO~1/packages/FRAMEW~4/features/FRAMEW~1/MBED-C~3/source/include/sn_coap_protocol_internal.h \
+ C:/Users/SINEIR~1/PLATFO~1/packages/FRAMEW~4/features/FRAMEW~1/MBED-C~3/source/include/sn_coap_header_internal.h \
+ C:/Users/SINEIR~1/PLATFO~1/packages/FRAMEW~4/features/FRAMEW~1/MBED-C~3/mbed-coap/sn_config.h \
+ C:/Users/SINEIR~1/PLATFO~1/packages/FRAMEW~4/features/NANOST~1/SAL-ST~1/NANOST~1/socket_api.h \
+ C:/Users/SINEIR~1/PLATFO~1/packages/FRAMEW~4/features/NANOST~1/SAL-ST~1/NANOST~1/ns_address.h \
+ C:/Users/SINEIR~1/PLATFO~1/packages/FRAMEW~4/features/FRAMEW~1/NANOST~1/MBED-C~1/ns_types.h \
+ C:/Users/SINEIR~1/PLATFO~1/packages/FRAMEW~4/features/FRAMEW~1/NANOST~1/MBED-C~1/ns_trace.h \
+ C:/Users/SINEIR~1/PLATFO~1/packages/FRAMEW~4/features/FRAMEW~1/MBED-T~1/mbed-trace/mbed_trace.h \
+ C:/Users/SINEIR~1/PLATFO~1/packages/FRAMEW~4/features/FRAMEW~1/MBED-C~2/MBED-C~1/randLIB.h
