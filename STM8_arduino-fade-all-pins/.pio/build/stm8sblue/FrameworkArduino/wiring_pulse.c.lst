@@ -1,0 +1,205 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 3.6.3 #9771 (MINGW32)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module wiring_pulse
+                                      6 	.optsdcc -mstm8
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _micros
+                                     12 	.globl _pulseInLong
+                                     13 ;--------------------------------------------------------
+                                     14 ; ram data
+                                     15 ;--------------------------------------------------------
+                                     16 	.area DATA
+                                     17 ;--------------------------------------------------------
+                                     18 ; ram data
+                                     19 ;--------------------------------------------------------
+                                     20 	.area INITIALIZED
+                                     21 ;--------------------------------------------------------
+                                     22 ; absolute external ram data
+                                     23 ;--------------------------------------------------------
+                                     24 	.area DABS (ABS)
+                                     25 ;--------------------------------------------------------
+                                     26 ; global & static initialisations
+                                     27 ;--------------------------------------------------------
+                                     28 	.area HOME
+                                     29 	.area GSINIT
+                                     30 	.area GSFINAL
+                                     31 	.area GSINIT
+                                     32 ;--------------------------------------------------------
+                                     33 ; Home
+                                     34 ;--------------------------------------------------------
+                                     35 	.area HOME
+                                     36 	.area HOME
+                                     37 ;--------------------------------------------------------
+                                     38 ; code
+                                     39 ;--------------------------------------------------------
+                                     40 	.area CODE
+                                     41 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\wiring_pulse.c: 69: unsigned long pulseInLong(uint8_t pin, uint8_t state, unsigned long timeout)
+                                     42 ;	-----------------------------------------
+                                     43 ;	 function pulseInLong
+                                     44 ;	-----------------------------------------
+      000000                         45 _pulseInLong:
+      000000 52 23            [ 2]   46 	sub	sp, #35
+                                     47 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\wiring_pulse.c: 76: uint8_t bit = digitalPinToBitMask(pin);
+      000002 AEr00r00         [ 2]   48 	ldw	x, #_digital_pin_to_bit_mask_PGM+0
+      000005 9F               [ 1]   49 	ld	a, xl
+      000006 1B 26            [ 1]   50 	add	a, (0x26, sp)
+      000008 02               [ 1]   51 	rlwa	x
+      000009 A9 00            [ 1]   52 	adc	a, #0x00
+      00000B 95               [ 1]   53 	ld	xh, a
+      00000C F6               [ 1]   54 	ld	a, (x)
+      00000D 6B 03            [ 1]   55 	ld	(0x03, sp), a
+                                     56 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\wiring_pulse.c: 77: uint8_t port = digitalPinToPort(pin);
+      00000F AEr00r00         [ 2]   57 	ldw	x, #_digital_pin_to_port_PGM+0
+      000012 9F               [ 1]   58 	ld	a, xl
+      000013 1B 26            [ 1]   59 	add	a, (0x26, sp)
+      000015 02               [ 1]   60 	rlwa	x
+      000016 A9 00            [ 1]   61 	adc	a, #0x00
+      000018 95               [ 1]   62 	ld	xh, a
+      000019 F6               [ 1]   63 	ld	a, (x)
+      00001A 6B 01            [ 1]   64 	ld	(0x01, sp), a
+                                     65 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\wiring_pulse.c: 78: uint8_t stateMask = (state ? bit : 0);
+      00001C 0D 27            [ 1]   66 	tnz	(0x27, sp)
+      00001E 27 06            [ 1]   67 	jreq	00118$
+      000020 7B 03            [ 1]   68 	ld	a, (0x03, sp)
+      000022 6B 02            [ 1]   69 	ld	(0x02, sp), a
+      000024 20 02            [ 2]   70 	jra	00119$
+      000026                         71 00118$:
+      000026 0F 02            [ 1]   72 	clr	(0x02, sp)
+      000028                         73 00119$:
+                                     74 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\wiring_pulse.c: 80: unsigned long startMicros = micros();
+      000028 CDr00r00         [ 4]   75 	call	_micros
+      00002B 1F 06            [ 2]   76 	ldw	(0x06, sp), x
+      00002D 17 04            [ 2]   77 	ldw	(0x04, sp), y
+      00002F 16 05            [ 2]   78 	ldw	y, (0x05, sp)
+      000031 17 05            [ 2]   79 	ldw	(0x05, sp), y
+                                     80 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\wiring_pulse.c: 83: while ((*portInputRegister(port) & bit) == stateMask) {
+      000033 AEr00r00         [ 2]   81 	ldw	x, #_port_to_input_PGM+0
+      000036 1F 0C            [ 2]   82 	ldw	(0x0c, sp), x
+      000038                         83 00103$:
+      000038 7B 01            [ 1]   84 	ld	a, (0x01, sp)
+      00003A 6B 17            [ 1]   85 	ld	(0x17, sp), a
+      00003C 0F 16            [ 1]   86 	clr	(0x16, sp)
+      00003E 1E 16            [ 2]   87 	ldw	x, (0x16, sp)
+      000040 58               [ 2]   88 	sllw	x
+      000041 1F 12            [ 2]   89 	ldw	(0x12, sp), x
+      000043 1E 0C            [ 2]   90 	ldw	x, (0x0c, sp)
+      000045 72 FB 12         [ 2]   91 	addw	x, (0x12, sp)
+      000048 1F 14            [ 2]   92 	ldw	(0x14, sp), x
+      00004A FE               [ 2]   93 	ldw	x, (x)
+      00004B 1F 22            [ 2]   94 	ldw	(0x22, sp), x
+      00004D 90 93            [ 1]   95 	ldw	y, x
+      00004F 17 18            [ 2]   96 	ldw	(0x18, sp), y
+      000051 93               [ 1]   97 	ldw	x, y
+      000052 F6               [ 1]   98 	ld	a, (x)
+      000053 14 03            [ 1]   99 	and	a, (0x03, sp)
+      000055 11 02            [ 1]  100 	cp	a, (0x02, sp)
+      000057 26 26            [ 1]  101 	jrne	00108$
+                                    102 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\wiring_pulse.c: 84: if (micros() - startMicros > timeout)
+      000059 CDr00r00         [ 4]  103 	call	_micros
+      00005C 51               [ 1]  104 	exgw	x, y
+      00005D 72 F2 06         [ 2]  105 	subw	y, (0x06, sp)
+      000060 17 20            [ 2]  106 	ldw	(0x20, sp), y
+      000062 9F               [ 1]  107 	ld	a, xl
+      000063 12 05            [ 1]  108 	sbc	a, (0x05, sp)
+      000065 6B 1F            [ 1]  109 	ld	(0x1f, sp), a
+      000067 9E               [ 1]  110 	ld	a, xh
+      000068 12 04            [ 1]  111 	sbc	a, (0x04, sp)
+      00006A 6B 1E            [ 1]  112 	ld	(0x1e, sp), a
+      00006C 1E 2A            [ 2]  113 	ldw	x, (0x2a, sp)
+      00006E 13 20            [ 2]  114 	cpw	x, (0x20, sp)
+      000070 7B 29            [ 1]  115 	ld	a, (0x29, sp)
+      000072 12 1F            [ 1]  116 	sbc	a, (0x1f, sp)
+      000074 7B 28            [ 1]  117 	ld	a, (0x28, sp)
+      000076 12 1E            [ 1]  118 	sbc	a, (0x1e, sp)
+      000078 24 BE            [ 1]  119 	jrnc	00103$
+                                    120 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\wiring_pulse.c: 85: return 0;
+      00007A 5F               [ 1]  121 	clrw	x
+      00007B 90 5F            [ 1]  122 	clrw	y
+      00007D 20 76            [ 2]  123 	jra	00116$
+                                    124 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\wiring_pulse.c: 89: while ((*portInputRegister(port) & bit) != stateMask) {
+      00007F                        125 00108$:
+      00007F 1E 14            [ 2]  126 	ldw	x, (0x14, sp)
+      000081 FE               [ 2]  127 	ldw	x, (x)
+      000082 F6               [ 1]  128 	ld	a, (x)
+      000083 14 03            [ 1]  129 	and	a, (0x03, sp)
+      000085 11 02            [ 1]  130 	cp	a, (0x02, sp)
+      000087 27 26            [ 1]  131 	jreq	00110$
+                                    132 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\wiring_pulse.c: 90: if (micros() - startMicros > timeout)
+      000089 CDr00r00         [ 4]  133 	call	_micros
+      00008C 51               [ 1]  134 	exgw	x, y
+      00008D 72 F2 06         [ 2]  135 	subw	y, (0x06, sp)
+      000090 17 10            [ 2]  136 	ldw	(0x10, sp), y
+      000092 9F               [ 1]  137 	ld	a, xl
+      000093 12 05            [ 1]  138 	sbc	a, (0x05, sp)
+      000095 6B 0F            [ 1]  139 	ld	(0x0f, sp), a
+      000097 9E               [ 1]  140 	ld	a, xh
+      000098 12 04            [ 1]  141 	sbc	a, (0x04, sp)
+      00009A 6B 0E            [ 1]  142 	ld	(0x0e, sp), a
+      00009C 1E 2A            [ 2]  143 	ldw	x, (0x2a, sp)
+      00009E 13 10            [ 2]  144 	cpw	x, (0x10, sp)
+      0000A0 7B 29            [ 1]  145 	ld	a, (0x29, sp)
+      0000A2 12 0F            [ 1]  146 	sbc	a, (0x0f, sp)
+      0000A4 7B 28            [ 1]  147 	ld	a, (0x28, sp)
+      0000A6 12 0E            [ 1]  148 	sbc	a, (0x0e, sp)
+      0000A8 24 D5            [ 1]  149 	jrnc	00108$
+                                    150 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\wiring_pulse.c: 91: return 0;
+      0000AA 5F               [ 1]  151 	clrw	x
+      0000AB 90 5F            [ 1]  152 	clrw	y
+      0000AD 20 46            [ 2]  153 	jra	00116$
+      0000AF                        154 00110$:
+                                    155 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\wiring_pulse.c: 94: start = micros();
+      0000AF CDr00r00         [ 4]  156 	call	_micros
+      0000B2 1F 0A            [ 2]  157 	ldw	(0x0a, sp), x
+      0000B4 17 08            [ 2]  158 	ldw	(0x08, sp), y
+                                    159 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\wiring_pulse.c: 96: while ((*portInputRegister(port) & bit) == stateMask) {
+      0000B6                        160 00113$:
+      0000B6 1E 14            [ 2]  161 	ldw	x, (0x14, sp)
+      0000B8 FE               [ 2]  162 	ldw	x, (x)
+      0000B9 F6               [ 1]  163 	ld	a, (x)
+      0000BA 14 03            [ 1]  164 	and	a, (0x03, sp)
+      0000BC 11 02            [ 1]  165 	cp	a, (0x02, sp)
+      0000BE 26 26            [ 1]  166 	jrne	00115$
+                                    167 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\wiring_pulse.c: 97: if (micros() - startMicros > timeout)
+      0000C0 CDr00r00         [ 4]  168 	call	_micros
+      0000C3 51               [ 1]  169 	exgw	x, y
+      0000C4 72 F2 06         [ 2]  170 	subw	y, (0x06, sp)
+      0000C7 17 1C            [ 2]  171 	ldw	(0x1c, sp), y
+      0000C9 9F               [ 1]  172 	ld	a, xl
+      0000CA 12 05            [ 1]  173 	sbc	a, (0x05, sp)
+      0000CC 6B 1B            [ 1]  174 	ld	(0x1b, sp), a
+      0000CE 9E               [ 1]  175 	ld	a, xh
+      0000CF 12 04            [ 1]  176 	sbc	a, (0x04, sp)
+      0000D1 6B 1A            [ 1]  177 	ld	(0x1a, sp), a
+      0000D3 1E 2A            [ 2]  178 	ldw	x, (0x2a, sp)
+      0000D5 13 1C            [ 2]  179 	cpw	x, (0x1c, sp)
+      0000D7 7B 29            [ 1]  180 	ld	a, (0x29, sp)
+      0000D9 12 1B            [ 1]  181 	sbc	a, (0x1b, sp)
+      0000DB 7B 28            [ 1]  182 	ld	a, (0x28, sp)
+      0000DD 12 1A            [ 1]  183 	sbc	a, (0x1a, sp)
+      0000DF 24 D5            [ 1]  184 	jrnc	00113$
+                                    185 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\wiring_pulse.c: 98: return 0;
+      0000E1 5F               [ 1]  186 	clrw	x
+      0000E2 90 5F            [ 1]  187 	clrw	y
+      0000E4 20 0F            [ 2]  188 	jra	00116$
+      0000E6                        189 00115$:
+                                    190 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\wiring_pulse.c: 100: return micros() - start;
+      0000E6 CDr00r00         [ 4]  191 	call	_micros
+      0000E9 51               [ 1]  192 	exgw	x, y
+      0000EA 72 F2 0A         [ 2]  193 	subw	y, (0x0a, sp)
+      0000ED 9F               [ 1]  194 	ld	a, xl
+      0000EE 12 09            [ 1]  195 	sbc	a, (0x09, sp)
+      0000F0 02               [ 1]  196 	rlwa	x
+      0000F1 12 08            [ 1]  197 	sbc	a, (0x08, sp)
+      0000F3 95               [ 1]  198 	ld	xh, a
+      0000F4 51               [ 1]  199 	exgw	x, y
+      0000F5                        200 00116$:
+      0000F5 5B 23            [ 2]  201 	addw	sp, #35
+      0000F7 81               [ 4]  202 	ret
+                                    203 	.area CODE
+                                    204 	.area INITIALIZER
+                                    205 	.area CABS (ABS)

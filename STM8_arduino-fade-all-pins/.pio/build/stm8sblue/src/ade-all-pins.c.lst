@@ -1,0 +1,118 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 3.6.3 #9771 (MINGW32)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module ade_all_pins
+                                      6 	.optsdcc -mstm8
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _delay
+                                     12 	.globl _analogWrite
+                                     13 	.globl _pinMode
+                                     14 	.globl _fadeAmount
+                                     15 	.globl _brightness
+                                     16 	.globl _i
+                                     17 	.globl _setup
+                                     18 	.globl _loop
+                                     19 ;--------------------------------------------------------
+                                     20 ; ram data
+                                     21 ;--------------------------------------------------------
+                                     22 	.area DATA
+      000000                         23 _i::
+      000000                         24 	.ds 1
+                                     25 ;--------------------------------------------------------
+                                     26 ; ram data
+                                     27 ;--------------------------------------------------------
+                                     28 	.area INITIALIZED
+      000000                         29 _brightness::
+      000000                         30 	.ds 2
+      000002                         31 _fadeAmount::
+      000002                         32 	.ds 2
+                                     33 ;--------------------------------------------------------
+                                     34 ; absolute external ram data
+                                     35 ;--------------------------------------------------------
+                                     36 	.area DABS (ABS)
+                                     37 ;--------------------------------------------------------
+                                     38 ; global & static initialisations
+                                     39 ;--------------------------------------------------------
+                                     40 	.area HOME
+                                     41 	.area GSINIT
+                                     42 	.area GSFINAL
+                                     43 	.area GSINIT
+                                     44 ;--------------------------------------------------------
+                                     45 ; Home
+                                     46 ;--------------------------------------------------------
+                                     47 	.area HOME
+                                     48 	.area HOME
+                                     49 ;--------------------------------------------------------
+                                     50 ; code
+                                     51 ;--------------------------------------------------------
+                                     52 	.area CODE
+                                     53 ;	src\ade-all-pins.c: 17: void setup()  {
+                                     54 ;	-----------------------------------------
+                                     55 ;	 function setup
+                                     56 ;	-----------------------------------------
+      000000                         57 _setup:
+                                     58 ;	src\ade-all-pins.c: 19: for (i=0; i<NUM_DIGITAL_PINS; i++) pinMode(i,OUTPUT);
+      000000 72 5Fu00u00      [ 1]   59 	clr	_i+0
+      000004                         60 00102$:
+      000004 4B 01            [ 1]   61 	push	#0x01
+      000006 3Bu00u00         [ 1]   62 	push	_i+0
+      000009 CDr00r00         [ 4]   63 	call	_pinMode
+      00000C 5B 02            [ 2]   64 	addw	sp, #2
+      00000E C6u00u00         [ 1]   65 	ld	a, _i+0
+      000011 4C               [ 1]   66 	inc	a
+      000012 C7u00u00         [ 1]   67 	ld	_i+0, a
+      000015 A1 10            [ 1]   68 	cp	a, #0x10
+      000017 25 EB            [ 1]   69 	jrc	00102$
+      000019 81               [ 4]   70 	ret
+                                     71 ;	src\ade-all-pins.c: 23: void loop()  {
+                                     72 ;	-----------------------------------------
+                                     73 ;	 function loop
+                                     74 ;	-----------------------------------------
+      00001A                         75 _loop:
+                                     76 ;	src\ade-all-pins.c: 25: for (i=0; i<NUM_DIGITAL_PINS; i++) analogWrite(i,brightness);
+      00001A 72 5Fu00u00      [ 1]   77 	clr	_i+0
+      00001E                         78 00105$:
+      00001E 3Bu00u01         [ 1]   79 	push	_brightness+1
+      000021 3Bu00u00         [ 1]   80 	push	_brightness+0
+      000024 3Bu00u00         [ 1]   81 	push	_i+0
+      000027 CDr00r00         [ 4]   82 	call	_analogWrite
+      00002A 5B 03            [ 2]   83 	addw	sp, #3
+      00002C C6u00u00         [ 1]   84 	ld	a, _i+0
+      00002F 4C               [ 1]   85 	inc	a
+      000030 C7u00u00         [ 1]   86 	ld	_i+0, a
+      000033 A1 10            [ 1]   87 	cp	a, #0x10
+      000035 25 E7            [ 1]   88 	jrc	00105$
+                                     89 ;	src\ade-all-pins.c: 28: brightness = brightness + fadeAmount;
+      000037 CEu00u00         [ 2]   90 	ldw	x, _brightness+0
+      00003A 72 BBu00u02      [ 2]   91 	addw	x, _fadeAmount+0
+                                     92 ;	src\ade-all-pins.c: 31: if (brightness == 0 || brightness == 255) {
+      00003E CFu00u00         [ 2]   93 	ldw	_brightness+0, x
+      000041 27 08            [ 1]   94 	jreq	00102$
+      000043 CEu00u00         [ 2]   95 	ldw	x, _brightness+0
+      000046 A3 00 FF         [ 2]   96 	cpw	x, #0x00ff
+      000049 26 07            [ 1]   97 	jrne	00103$
+      00004B                         98 00102$:
+                                     99 ;	src\ade-all-pins.c: 32: fadeAmount = -fadeAmount ; 
+      00004B CEu00u02         [ 2]  100 	ldw	x, _fadeAmount+0
+      00004E 50               [ 2]  101 	negw	x
+      00004F CFu00u02         [ 2]  102 	ldw	_fadeAmount+0, x
+      000052                        103 00103$:
+                                    104 ;	src\ade-all-pins.c: 35: delay(30);                            
+      000052 4B 1E            [ 1]  105 	push	#0x1e
+      000054 5F               [ 1]  106 	clrw	x
+      000055 89               [ 2]  107 	pushw	x
+      000056 4B 00            [ 1]  108 	push	#0x00
+      000058 CDr00r00         [ 4]  109 	call	_delay
+      00005B 5B 04            [ 2]  110 	addw	sp, #4
+      00005D 81               [ 4]  111 	ret
+                                    112 	.area CODE
+                                    113 	.area INITIALIZER
+      000000                        114 __xinit__brightness:
+      000000 00 00                  115 	.dw #0x0000
+      000002                        116 __xinit__fadeAmount:
+      000002 00 05                  117 	.dw #0x0005
+                                    118 	.area CABS (ABS)

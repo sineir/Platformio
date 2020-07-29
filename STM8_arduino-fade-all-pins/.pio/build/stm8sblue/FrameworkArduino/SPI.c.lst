@@ -1,0 +1,193 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 3.6.3 #9771 (MINGW32)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module SPI
+                                      6 	.optsdcc -mstm8
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _digitalWrite
+                                     12 	.globl _pinMode
+                                     13 	.globl _SPI_begin
+                                     14 	.globl _SPI_transfer_asm
+                                     15 	.globl _SPI_end
+                                     16 ;--------------------------------------------------------
+                                     17 ; ram data
+                                     18 ;--------------------------------------------------------
+                                     19 	.area DATA
+      000000                         20 _SPI_initialized:
+      000000                         21 	.ds 1
+      000001                         22 _SPI_interruptMode:
+      000001                         23 	.ds 1
+      000002                         24 _SPI_interruptMask:
+      000002                         25 	.ds 1
+      000003                         26 _SPI_interruptSave:
+      000003                         27 	.ds 1
+                                     28 ;--------------------------------------------------------
+                                     29 ; ram data
+                                     30 ;--------------------------------------------------------
+                                     31 	.area INITIALIZED
+                                     32 ;--------------------------------------------------------
+                                     33 ; absolute external ram data
+                                     34 ;--------------------------------------------------------
+                                     35 	.area DABS (ABS)
+                                     36 ;--------------------------------------------------------
+                                     37 ; global & static initialisations
+                                     38 ;--------------------------------------------------------
+                                     39 	.area HOME
+                                     40 	.area GSINIT
+                                     41 	.area GSFINAL
+                                     42 	.area GSINIT
+                                     43 ;--------------------------------------------------------
+                                     44 ; Home
+                                     45 ;--------------------------------------------------------
+                                     46 	.area HOME
+                                     47 	.area HOME
+                                     48 ;--------------------------------------------------------
+                                     49 ; code
+                                     50 ;--------------------------------------------------------
+                                     51 	.area CODE
+                                     52 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\SPI.c: 27: void SPI_begin(void)
+                                     53 ;	-----------------------------------------
+                                     54 ;	 function SPI_begin
+                                     55 ;	-----------------------------------------
+      000000                         56 _SPI_begin:
+      000000 52 06            [ 2]   57 	sub	sp, #6
+                                     58 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\SPI.c: 70: END_CRITICAL
+      000002 9B               [ 1]   59 	sim
+                                     60 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\SPI.c: 34: if (!SPI_initialized) {
+      000003 72 5Du00u00      [ 1]   61 	tnz	_SPI_initialized+0
+      000007 26 4F            [ 1]   62 	jrne	00104$
+                                     63 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\SPI.c: 36: port = digitalPinToPort(SS);
+      000009 AEr00r02         [ 2]   64 	ldw	x, #_digital_pin_to_port_PGM+2
+      00000C F6               [ 1]   65 	ld	a, (x)
+      00000D 6B 04            [ 1]   66 	ld	(0x04, sp), a
+                                     67 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\SPI.c: 37: bit = digitalPinToBitMask(SS);
+      00000F AEr00r02         [ 2]   68 	ldw	x, #_digital_pin_to_bit_mask_PGM+2
+      000012 F6               [ 1]   69 	ld	a, (x)
+      000013 6B 03            [ 1]   70 	ld	(0x03, sp), a
+                                     71 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\SPI.c: 38: reg = portModeRegister(port);
+      000015 AEr00r00         [ 2]   72 	ldw	x, #_port_to_mode_PGM+0
+      000018 1F 05            [ 2]   73 	ldw	(0x05, sp), x
+      00001A 5F               [ 1]   74 	clrw	x
+      00001B 7B 04            [ 1]   75 	ld	a, (0x04, sp)
+      00001D 97               [ 1]   76 	ld	xl, a
+      00001E 58               [ 2]   77 	sllw	x
+      00001F 72 FB 05         [ 2]   78 	addw	x, (0x05, sp)
+      000022 FE               [ 2]   79 	ldw	x, (x)
+                                     80 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\SPI.c: 42: if(!(*reg & bit)){
+      000023 F6               [ 1]   81 	ld	a, (x)
+      000024 14 03            [ 1]   82 	and	a, (0x03, sp)
+      000026 4D               [ 1]   83 	tnz	a
+      000027 26 09            [ 1]   84 	jrne	00102$
+                                     85 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\SPI.c: 43: digitalWrite(SS, HIGH);
+      000029 4B 01            [ 1]   86 	push	#0x01
+      00002B 4B 02            [ 1]   87 	push	#0x02
+      00002D CDr00r00         [ 4]   88 	call	_digitalWrite
+      000030 5B 02            [ 2]   89 	addw	sp, #2
+      000032                         90 00102$:
+                                     91 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\SPI.c: 49: pinMode(SS, OUTPUT);
+      000032 4B 01            [ 1]   92 	push	#0x01
+      000034 4B 02            [ 1]   93 	push	#0x02
+      000036 CDr00r00         [ 4]   94 	call	_pinMode
+      000039 5B 02            [ 2]   95 	addw	sp, #2
+                                     96 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\SPI.c: 53: SPI->CR2 = SPI_CR2_SSI | SPI_CR2_SSM;
+      00003B 35 03 52 01      [ 1]   97 	mov	0x5201+0, #0x03
+                                     98 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\SPI.c: 58: SPI->CR1 |= SPI_CR1_MSTR | SPI_CR1_SPE;
+      00003F AE 52 00         [ 2]   99 	ldw	x, #0x5200
+      000042 F6               [ 1]  100 	ld	a, (x)
+      000043 AA 44            [ 1]  101 	or	a, #0x44
+      000045 F7               [ 1]  102 	ld	(x), a
+                                    103 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\SPI.c: 66: pinMode(SCK, OUTPUT);
+      000046 4B 01            [ 1]  104 	push	#0x01
+      000048 4B 07            [ 1]  105 	push	#0x07
+      00004A CDr00r00         [ 4]  106 	call	_pinMode
+      00004D 5B 02            [ 2]  107 	addw	sp, #2
+                                    108 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\SPI.c: 67: pinMode(MOSI, OUTPUT);
+      00004F 4B 01            [ 1]  109 	push	#0x01
+      000051 4B 08            [ 1]  110 	push	#0x08
+      000053 CDr00r00         [ 4]  111 	call	_pinMode
+      000056 5B 02            [ 2]  112 	addw	sp, #2
+      000058                        113 00104$:
+                                    114 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\SPI.c: 69: SPI_initialized++; // reference count
+      000058 C6u00u00         [ 1]  115 	ld	a, _SPI_initialized+0
+      00005B 4C               [ 1]  116 	inc	a
+      00005C C7u00u00         [ 1]  117 	ld	_SPI_initialized+0, a
+      00005F 9A               [ 1]  118 	rim
+      000060 5B 06            [ 2]  119 	addw	sp, #6
+      000062 81               [ 4]  120 	ret
+                                    121 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\SPI.c: 148: void SPI_transfer_asm(void *buf, size_t count) {
+                                    122 ;	-----------------------------------------
+                                    123 ;	 function SPI_transfer_asm
+                                    124 ;	-----------------------------------------
+      000063                        125 _SPI_transfer_asm:
+                                    126 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\SPI.c: 177: __endasm;
+      000063 16 05            [ 2]  127 	ldw	y,(5,SP)
+      000065 27 2B            [ 1]  128 	jreq	$00001
+      000067 1E 03            [ 2]  129 	ldw	x,(3,SP)
+      000069 F6               [ 1]  130 	ld	a,(x) ; ((SPI_TypeDef *) 0x5200)->DR = *p
+      00006A C7 52 04         [ 1]  131 	ld	0x5204,a
+      00006D 20 16            [ 2]  132 	jra	$00003 ; start the while loop
+      00006F                        133 	$00002:
+      00006F E6 01            [ 1]  134 	ld	a,(1,x) ; out = *(p+1)
+      000071 72 03 52 03 FB   [ 2]  135 	btjf	0x5203,#1,. ; while (!(((SPI_TypeDef *) 0x5200)->SR & ((uint8_t)0x02)));
+      000076 9B               [ 1]  136 	sim	; make sure to avoid a possible
+                                    137 ;	race condition to not miss the
+                                    138 ;	received data
+      000077 C7 52 04         [ 1]  139 	ld	0x5204,a ; ((SPI_TypeDef *) 0x5200)->DR = out
+      00007A 72 01 52 03 FB   [ 2]  140 	btjf	0x5203,#0,. ; while (!(((SPI_TypeDef *) 0x5200)->SR & ((uint8_t)0x01)));
+      00007F C6 52 04         [ 1]  141 	ld	a,0x5204 ; in = ((SPI_TypeDef *) 0x5200)->DR
+      000082 9A               [ 1]  142 	rim
+      000083 F7               [ 1]  143 	ld	(x),a ; *p++ = in
+      000084 5C               [ 1]  144 	incw	x
+      000085                        145 	$00003:
+      000085 90 5A            [ 2]  146 	decw	y
+      000087 26 E6            [ 1]  147 	jrne	$00002 ; }
+      000089 72 01 52 03 FB   [ 2]  148 	btjf	0x5203,#0,. ; while (!(((SPI_TypeDef *) 0x5200)->SR & ((uint8_t)0x01)));
+      00008E C6 52 04         [ 1]  149 	ld	a,0x5204 ; *p = ((SPI_TypeDef *) 0x5200)->DR
+      000091 F7               [ 1]  150 	ld	(x),a
+      000092                        151 	$00001:
+      000092 81               [ 4]  152 	ret
+                                    153 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\SPI.c: 210: void SPI_end(void) {
+                                    154 ;	-----------------------------------------
+                                    155 ;	 function SPI_end
+                                    156 ;	-----------------------------------------
+      000093                        157 _SPI_end:
+                                    158 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\SPI.c: 231: END_CRITICAL
+      000093 9B               [ 1]  159 	sim
+                                    160 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\SPI.c: 213: if (SPI_initialized)
+      000094 72 5Du00u00      [ 1]  161 	tnz	_SPI_initialized+0
+      000098 27 04            [ 1]  162 	jreq	00102$
+                                    163 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\SPI.c: 214: SPI_initialized--;
+      00009A 72 5Au00u00      [ 1]  164 	dec	_SPI_initialized+0
+      00009E                        165 00102$:
+                                    166 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\SPI.c: 216: if (!SPI_initialized) {
+      00009E 72 5Du00u00      [ 1]  167 	tnz	_SPI_initialized+0
+      0000A2 26 1A            [ 1]  168 	jrne	00110$
+                                    169 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\SPI.c: 221: while ((SPI->SR&SPI_SR_TXE)==0);
+      0000A4                        170 00103$:
+      0000A4 AE 52 03         [ 2]  171 	ldw	x, #0x5203
+      0000A7 F6               [ 1]  172 	ld	a, (x)
+      0000A8 A5 02            [ 1]  173 	bcp	a, #0x02
+      0000AA 27 F8            [ 1]  174 	jreq	00103$
+                                    175 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\SPI.c: 223: while (SPI->SR&SPI_SR_BSY);
+      0000AC                        176 00106$:
+      0000AC AE 52 03         [ 2]  177 	ldw	x, #0x5203
+      0000AF F6               [ 1]  178 	ld	a, (x)
+      0000B0 4D               [ 1]  179 	tnz	a
+      0000B1 2B F9            [ 1]  180 	jrmi	00106$
+                                    181 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\SPI.c: 225: SPI->CR1 &= ~SPI_CR1_SPE;
+      0000B3 AE 52 00         [ 2]  182 	ldw	x, #0x5200
+      0000B6 F6               [ 1]  183 	ld	a, (x)
+      0000B7 A4 BF            [ 1]  184 	and	a, #0xbf
+      0000B9 F7               [ 1]  185 	ld	(x), a
+                                    186 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\SPI.c: 226: SPI_interruptMode = 0;
+      0000BA 72 5Fu00u01      [ 1]  187 	clr	_SPI_interruptMode+0
+      0000BE                        188 00110$:
+      0000BE 9A               [ 1]  189 	rim
+      0000BF 81               [ 4]  190 	ret
+                                    191 	.area CODE
+                                    192 	.area INITIALIZER
+                                    193 	.area CABS (ABS)

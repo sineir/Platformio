@@ -1,0 +1,233 @@
+ASxxxx Linker V03.00 + NoICE + sdld,  page 1.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000000  .__.ABS.                           stm8s_clk_c_22
+     00000000  l_CABS                          
+     00000000  l_DABS                          
+     00000000  l__CODE                         
+     00000000  s_CABS                          
+     00000000  s_DABS                          
+     00000000  s__CODE                         
+     00000001  l_SSEG                          
+     00000001  s_DATA                          
+     00000003  l_GSFINAL                       
+     00000016  l_INITIALIZED                   
+     00000016  l_INITIALIZER                   
+     0000001A  l_GSINIT                        
+     00000035  l_DATA                          
+     00000036  s_INITIALIZED                   
+     00000083  l_HOME                          
+     00000BDD  l_CODE                          
+     00008000  s_HOME                          
+     00008083  s_GSINIT                        
+     0000809D  s_GSFINAL                       
+     000080A0  s_CODE                          
+     00008C7D  s_INITIALIZER                   
+     00008C93  s_SSEG                          
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+DATA                                00000001    00000035 =          53. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000001  _i                                 ade_all_pins
+     00000002  _timer4_overflow_count             wiring
+     00000006  _timer4_millis                     wiring
+     0000000B  _runSerialEvent                    wiring
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+INITIALIZED                         00000036    00000016 =          22. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000036  _brightness                        ade_all_pins
+     00000038  _fadeAmount                        ade_all_pins
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+HOME                                00008000    00000083 =         131. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 5.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT                              00008083    0000001A =          26. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 6.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSFINAL                             0000809D    00000003 =           3. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 7.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CODE                                000080A0    00000BDD =        3037. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     000080A0  _setup                             ade_all_pins
+     000080BA  _loop                              ade_all_pins
+     000080FE  _analogRead                        wiring_analog
+     0000815C  _analogWrite                       wiring_analog
+     0000823F  _pinMode                           wiring_digital
+     0000836C  _digitalWrite                      wiring_digital
+     000083CF  _digitalRead                       wiring_digital
+     00008428  _port_to_mode_PGM                  wiring_digital
+     00008432  _port_to_output_PGM                wiring_digital
+     0000843C  _port_to_input_PGM                 wiring_digital
+     00008446  _digital_pin_to_port_PGM           wiring_digital
+     00008456  _digital_pin_to_bit_mask_PGM       wiring_digital
+     00008466  _digital_pin_to_timer_PGM          wiring_digital
+     00008476  _digitalPinToAnalogChannelMap      wiring_digital
+     00008480  _ccmrx                             wiring_digital
+     0000848C  _TIM4_UPD_OVF_IRQHandler           wiring
+     000084C5  _millis                            wiring
+     000084CF  _micros                            wiring
+     00008534  _delay                             wiring
+     00008590  _delayMicroseconds                 wiring
+     000085C9  _init                              wiring
+     00008687  _main                              wiring
+     0000869F  _ADC1_DeInit                       stm8s_adc1_c_3
+     000086D1  _attachInterrupt                   WInterrupts
+     000086EC  _detachInterrupt                   WInterrupts
+     00008709  _EXTI_PORTA_IRQHandler             WInterrupts
+     0000870F  _EXTI_PORTB_IRQHandler             WInterrupts
+     00008715  _EXTI_PORTC_IRQHandler             WInterrupts
+     0000871B  _EXTI_PORTD_IRQHandler             WInterrupts
+     00008721  _EXTI_PORTE_IRQHandler             WInterrupts
+     00008727  _TIM1_CAP_COM_IRQHandler           WInterrupts
+     0000872D  _TIM1_TimeBaseInit                 stm8s_tim1_c_4
+     00008760  _TIM2_TimeBaseInit                 stm8s_tim2_c_4
+     00008777  __mullong                          
+     000087F3  _TIM1_DeInit                       stm8s_tim1_c_3
+     0000888C  _TIM2_DeInit                       stm8s_tim2_c_3
+     000088E5  _TIM4_DeInit                       stm8s_tim4_c_3
+     00008935  _UART1_RX_IRQHandler               HardwareSerial
+     00008954  _UART1_TX_IRQHandler               HardwareSerial
+     0000899A  _HardwareSerial                    HardwareSerial
+     0000899E  _HardwareSerial_begin              HardwareSerial
+     000089ED  _HardwareSerial_begin_config       HardwareSerial
+     00008A44  _HardwareSerial_end                HardwareSerial
+     00008A78  _HardwareSerial_available          HardwareSerial
+     00008A98  _HardwareSerial_peek               HardwareSerial
+     00008AC5  _HardwareSerial_read               HardwareSerial
+     00008B1F  _HardwareSerial_flush              HardwareSerial
+     00008B38  _HardwareSerial_write              HardwareSerial
+     00008B7D  _serialEvent                       weak_serialEvent
+     00008B7E  __divulong                         
+ASxxxx Linker V03.00 + NoICE + sdld,  page 8.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CODE                                000080A0    00000BDD =        3037. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00008BD8  _initVariant                       weak_initVariant
+     00008BD9  _UART1_DeInit                      stm8s_uart1_c_2
+     00008C06  _GPIO_DeInit                       stm8s_gpio_c_3
+     00008C20  _CLK_GetClockFreq                  stm8s_clk_c_22
+     00008C79  _HSIDivFactor                      stm8s_clk_c_22
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 9.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+INITIALIZER                         00008C7D    00000016 =          22. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 10.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+SSEG                                00008C93    00000001 =           1. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 11.
+
+Files Linked                              [ module(s) ]
+
+.pio\build\stm8sblue\src\ade-all-pins.c.rel
+                                          [ ade_all_pins ]
+
+
+Libraries Linked                          [ object file ]
+
+.pio\build\stm8sblue\libFrameworkArduino.lib
+                                          [ wiring_analog.c.rel ]
+.pio\build\stm8sblue\libFrameworkArduino.lib
+                                          [ wiring_digital.c.rel ]
+.pio\build\stm8sblue\libFrameworkArduino.lib
+                                          [ wiring.c.rel ]
+C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\STM8S_StdPeriph_Driver\lib/STM8S103.lib
+                                          [ stm8s_adc1.c-3.rel ]
+.pio\build\stm8sblue\libFrameworkArduino.lib
+                                          [ WInterrupts.c.rel ]
+C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\STM8S_StdPeriph_Driver\lib/STM8S103.lib
+                                          [ stm8s_tim1.c-4.rel ]
+C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\STM8S_StdPeriph_Driver\lib/STM8S103.lib
+                                          [ stm8s_tim2.c-4.rel ]
+C:\Users\sineirx\.platformio\packages\toolchain-sdcc@1.30603.9771\lib\stm8/stm8.lib
+                                          [ _mullong.rel ]
+C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\STM8S_StdPeriph_Driver\lib/STM8S103.lib
+                                          [ stm8s_tim1.c-3.rel ]
+C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\STM8S_StdPeriph_Driver\lib/STM8S103.lib
+                                          [ stm8s_tim2.c-3.rel ]
+C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\STM8S_StdPeriph_Driver\lib/STM8S103.lib
+                                          [ stm8s_tim4.c-3.rel ]
+.pio\build\stm8sblue\libFrameworkArduino.lib
+                                          [ HardwareSerial.c.rel ]
+.pio\build\stm8sblue\libFrameworkArduino.lib
+                                          [ weak_serialEvent.c.rel ]
+C:\Users\sineirx\.platformio\packages\toolchain-sdcc@1.30603.9771\lib\stm8/stm8.lib
+                                          [ _divulong.rel ]
+.pio\build\stm8sblue\libFrameworkArduino.lib
+                                          [ weak_initVariant.c.rel ]
+C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\STM8S_StdPeriph_Driver\lib/STM8S103.lib
+                                          [ stm8s_uart1.c-2.rel ]
+C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\STM8S_StdPeriph_Driver\lib/STM8S103.lib
+                                          [ stm8s_gpio.c-3.rel ]
+C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\STM8S_StdPeriph_Driver\lib/STM8S103.lib
+                                          [ stm8s_clk.c-22.rel ]
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 12.
+
+User Base Address Definitions
+
+HOME = 0x8000
+DATA = 0x0001
+
+

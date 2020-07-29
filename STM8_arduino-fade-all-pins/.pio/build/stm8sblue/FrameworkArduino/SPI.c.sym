@@ -1,0 +1,42 @@
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (STMicroelectronics STM8), page 1.
+Hexadecimal [24-Bits]
+
+Symbol Table
+
+  7 $00001                                                         000092 R
+  7 $00002                                                         00006F R
+  7 $00003                                                         000085 R
+    .__.$$$.                                                    =  002710 L
+    .__.ABS.                                                    =  000000 G
+    .__.CPU.                                                    =  000000 L
+    .__.H$L.                                                    =  000001 L
+  7 _SPI_begin                                                     000000 GR
+  7 _SPI_end                                                       000093 GR
+  1 _SPI_initialized                                               000000 R
+  1 _SPI_interruptMask                                             000002 R
+  1 _SPI_interruptMode                                             000001 R
+  1 _SPI_interruptSave                                             000003 R
+  7 _SPI_transfer_asm                                              000063 GR
+    _digitalWrite                                                  ****** GX
+    _digital_pin_to_bit_mask_PGM                                   ****** GX
+    _digital_pin_to_port_PGM                                       ****** GX
+    _pinMode                                                       ****** GX
+    _port_to_mode_PGM                                              ****** GX
+
+
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (STMicroelectronics STM8), page 2.
+Hexadecimal [24-Bits]
+
+Area Table
+
+   0 _CODE                                      size      0   flags    0
+   1 DATA                                       size      4   flags    0
+   2 INITIALIZED                                size      0   flags    0
+   3 DABS                                       size      0   flags    8
+   4 HOME                                       size      0   flags    0
+   5 GSINIT                                     size      0   flags    0
+   6 GSFINAL                                    size      0   flags    0
+   7 CODE                                       size     C0   flags    0
+   8 INITIALIZER                                size      0   flags    0
+   9 CABS                                       size      0   flags    8
+

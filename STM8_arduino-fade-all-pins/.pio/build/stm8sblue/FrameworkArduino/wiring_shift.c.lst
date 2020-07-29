@@ -1,0 +1,223 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 3.6.3 #9771 (MINGW32)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module wiring_shift
+                                      6 	.optsdcc -mstm8
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _digitalRead
+                                     12 	.globl _digitalWrite
+                                     13 	.globl _shiftIn
+                                     14 	.globl _shiftOut
+                                     15 ;--------------------------------------------------------
+                                     16 ; ram data
+                                     17 ;--------------------------------------------------------
+                                     18 	.area DATA
+                                     19 ;--------------------------------------------------------
+                                     20 ; ram data
+                                     21 ;--------------------------------------------------------
+                                     22 	.area INITIALIZED
+                                     23 ;--------------------------------------------------------
+                                     24 ; absolute external ram data
+                                     25 ;--------------------------------------------------------
+                                     26 	.area DABS (ABS)
+                                     27 ;--------------------------------------------------------
+                                     28 ; global & static initialisations
+                                     29 ;--------------------------------------------------------
+                                     30 	.area HOME
+                                     31 	.area GSINIT
+                                     32 	.area GSFINAL
+                                     33 	.area GSINIT
+                                     34 ;--------------------------------------------------------
+                                     35 ; Home
+                                     36 ;--------------------------------------------------------
+                                     37 	.area HOME
+                                     38 	.area HOME
+                                     39 ;--------------------------------------------------------
+                                     40 ; code
+                                     41 ;--------------------------------------------------------
+                                     42 	.area CODE
+                                     43 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\wiring_shift.c: 25: uint8_t shiftIn(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder) {
+                                     44 ;	-----------------------------------------
+                                     45 ;	 function shiftIn
+                                     46 ;	-----------------------------------------
+      000000                         47 _shiftIn:
+      000000 52 03            [ 2]   48 	sub	sp, #3
+                                     49 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\wiring_shift.c: 26: uint8_t value = 0;
+      000002 0F 02            [ 1]   50 	clr	(0x02, sp)
+                                     51 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\wiring_shift.c: 29: for (i = 0; i < 8; ++i) {
+      000004 0F 01            [ 1]   52 	clr	(0x01, sp)
+      000006                         53 00105$:
+                                     54 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\wiring_shift.c: 30: digitalWrite(clockPin, HIGH);
+      000006 4B 01            [ 1]   55 	push	#0x01
+      000008 7B 08            [ 1]   56 	ld	a, (0x08, sp)
+      00000A 88               [ 1]   57 	push	a
+      00000B CDr00r00         [ 4]   58 	call	_digitalWrite
+      00000E 5B 02            [ 2]   59 	addw	sp, #2
+                                     60 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\wiring_shift.c: 32: value |= digitalRead(dataPin) << i;
+      000010 7B 02            [ 1]   61 	ld	a, (0x02, sp)
+      000012 6B 03            [ 1]   62 	ld	(0x03, sp), a
+                                     63 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\wiring_shift.c: 31: if (bitOrder == LSBFIRST)
+      000014 0D 08            [ 1]   64 	tnz	(0x08, sp)
+      000016 26 19            [ 1]   65 	jrne	00102$
+                                     66 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\wiring_shift.c: 32: value |= digitalRead(dataPin) << i;
+      000018 7B 06            [ 1]   67 	ld	a, (0x06, sp)
+      00001A 88               [ 1]   68 	push	a
+      00001B CDr00r00         [ 4]   69 	call	_digitalRead
+      00001E 84               [ 1]   70 	pop	a
+      00001F 9F               [ 1]   71 	ld	a, xl
+      000020 88               [ 1]   72 	push	a
+      000021 7B 02            [ 1]   73 	ld	a, (0x02, sp)
+      000023 27 05            [ 1]   74 	jreq	00124$
+      000025                         75 00123$:
+      000025 08 01            [ 1]   76 	sll	(1, sp)
+      000027 4A               [ 1]   77 	dec	a
+      000028 26 FB            [ 1]   78 	jrne	00123$
+      00002A                         79 00124$:
+      00002A 84               [ 1]   80 	pop	a
+      00002B 1A 03            [ 1]   81 	or	a, (0x03, sp)
+      00002D 6B 02            [ 1]   82 	ld	(0x02, sp), a
+      00002F 20 1C            [ 2]   83 	jra	00103$
+      000031                         84 00102$:
+                                     85 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\wiring_shift.c: 34: value |= digitalRead(dataPin) << (7 - i);
+      000031 7B 06            [ 1]   86 	ld	a, (0x06, sp)
+      000033 88               [ 1]   87 	push	a
+      000034 CDr00r00         [ 4]   88 	call	_digitalRead
+      000037 84               [ 1]   89 	pop	a
+      000038 A6 07            [ 1]   90 	ld	a, #0x07
+      00003A 10 01            [ 1]   91 	sub	a, (0x01, sp)
+      00003C 95               [ 1]   92 	ld	xh, a
+      00003D 9F               [ 1]   93 	ld	a, xl
+      00003E 88               [ 1]   94 	push	a
+      00003F 9E               [ 1]   95 	ld	a, xh
+      000040 4D               [ 1]   96 	tnz	a
+      000041 27 05            [ 1]   97 	jreq	00126$
+      000043                         98 00125$:
+      000043 08 01            [ 1]   99 	sll	(1, sp)
+      000045 4A               [ 1]  100 	dec	a
+      000046 26 FB            [ 1]  101 	jrne	00125$
+      000048                        102 00126$:
+      000048 84               [ 1]  103 	pop	a
+      000049 1A 03            [ 1]  104 	or	a, (0x03, sp)
+      00004B 6B 02            [ 1]  105 	ld	(0x02, sp), a
+      00004D                        106 00103$:
+                                    107 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\wiring_shift.c: 35: digitalWrite(clockPin, LOW);
+      00004D 4B 00            [ 1]  108 	push	#0x00
+      00004F 7B 08            [ 1]  109 	ld	a, (0x08, sp)
+      000051 88               [ 1]  110 	push	a
+      000052 CDr00r00         [ 4]  111 	call	_digitalWrite
+      000055 5B 02            [ 2]  112 	addw	sp, #2
+                                    113 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\wiring_shift.c: 29: for (i = 0; i < 8; ++i) {
+      000057 0C 01            [ 1]  114 	inc	(0x01, sp)
+      000059 7B 01            [ 1]  115 	ld	a, (0x01, sp)
+      00005B A1 08            [ 1]  116 	cp	a, #0x08
+      00005D 25 A7            [ 1]  117 	jrc	00105$
+                                    118 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\wiring_shift.c: 37: return value;
+      00005F 7B 02            [ 1]  119 	ld	a, (0x02, sp)
+      000061 5B 03            [ 2]  120 	addw	sp, #3
+      000063 81               [ 4]  121 	ret
+                                    122 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\wiring_shift.c: 40: void shiftOut(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder, uint8_t val)
+                                    123 ;	-----------------------------------------
+                                    124 ;	 function shiftOut
+                                    125 ;	-----------------------------------------
+      000064                        126 _shiftOut:
+      000064 52 07            [ 2]  127 	sub	sp, #7
+                                    128 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\wiring_shift.c: 44: for (i = 0; i < 8; i++)  {
+      000066 0F 01            [ 1]  129 	clr	(0x01, sp)
+      000068                        130 00105$:
+                                    131 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\wiring_shift.c: 46: digitalWrite(dataPin, !!(val & (1 << i)));
+      000068 7B 0D            [ 1]  132 	ld	a, (0x0d, sp)
+      00006A 6B 05            [ 1]  133 	ld	(0x05, sp), a
+      00006C 0F 04            [ 1]  134 	clr	(0x04, sp)
+                                    135 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\wiring_shift.c: 45: if (bitOrder == LSBFIRST)
+      00006E 0D 0C            [ 1]  136 	tnz	(0x0c, sp)
+      000070 26 24            [ 1]  137 	jrne	00102$
+                                    138 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\wiring_shift.c: 46: digitalWrite(dataPin, !!(val & (1 << i)));
+      000072 AE 00 01         [ 2]  139 	ldw	x, #0x0001
+      000075 7B 01            [ 1]  140 	ld	a, (0x01, sp)
+      000077 27 04            [ 1]  141 	jreq	00132$
+      000079                        142 00131$:
+      000079 58               [ 2]  143 	sllw	x
+      00007A 4A               [ 1]  144 	dec	a
+      00007B 26 FC            [ 1]  145 	jrne	00131$
+      00007D                        146 00132$:
+      00007D 9F               [ 1]  147 	ld	a, xl
+      00007E 14 05            [ 1]  148 	and	a, (0x05, sp)
+      000080 02               [ 1]  149 	rlwa	x
+      000081 14 04            [ 1]  150 	and	a, (0x04, sp)
+      000083 95               [ 1]  151 	ld	xh, a
+      000084 5D               [ 2]  152 	tnzw	x
+      000085 27 03            [ 1]  153 	jreq	00109$
+      000087 A6 01            [ 1]  154 	ld	a, #0x01
+      000089 21                     155 	.byte 0x21
+      00008A                        156 00109$:
+      00008A 4F               [ 1]  157 	clr	a
+      00008B                        158 00110$:
+      00008B 88               [ 1]  159 	push	a
+      00008C 7B 0B            [ 1]  160 	ld	a, (0x0b, sp)
+      00008E 88               [ 1]  161 	push	a
+      00008F CDr00r00         [ 4]  162 	call	_digitalWrite
+      000092 5B 02            [ 2]  163 	addw	sp, #2
+      000094 20 34            [ 2]  164 	jra	00103$
+      000096                        165 00102$:
+                                    166 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\wiring_shift.c: 48: digitalWrite(dataPin, !!(val & (1 << (7 - i))));
+      000096 7B 01            [ 1]  167 	ld	a, (0x01, sp)
+      000098 6B 07            [ 1]  168 	ld	(0x07, sp), a
+      00009A 0F 06            [ 1]  169 	clr	(0x06, sp)
+      00009C 90 AE 00 07      [ 2]  170 	ldw	y, #0x0007
+      0000A0 72 F2 06         [ 2]  171 	subw	y, (0x06, sp)
+      0000A3 AE 00 01         [ 2]  172 	ldw	x, #0x0001
+      0000A6 90 9F            [ 1]  173 	ld	a, yl
+      0000A8 4D               [ 1]  174 	tnz	a
+      0000A9 27 04            [ 1]  175 	jreq	00135$
+      0000AB                        176 00134$:
+      0000AB 58               [ 2]  177 	sllw	x
+      0000AC 4A               [ 1]  178 	dec	a
+      0000AD 26 FC            [ 1]  179 	jrne	00134$
+      0000AF                        180 00135$:
+      0000AF 9F               [ 1]  181 	ld	a, xl
+      0000B0 14 05            [ 1]  182 	and	a, (0x05, sp)
+      0000B2 6B 03            [ 1]  183 	ld	(0x03, sp), a
+      0000B4 9E               [ 1]  184 	ld	a, xh
+      0000B5 14 04            [ 1]  185 	and	a, (0x04, sp)
+      0000B7 6B 02            [ 1]  186 	ld	(0x02, sp), a
+      0000B9 1E 02            [ 2]  187 	ldw	x, (0x02, sp)
+      0000BB 27 03            [ 1]  188 	jreq	00111$
+      0000BD A6 01            [ 1]  189 	ld	a, #0x01
+      0000BF 21                     190 	.byte 0x21
+      0000C0                        191 00111$:
+      0000C0 4F               [ 1]  192 	clr	a
+      0000C1                        193 00112$:
+      0000C1 88               [ 1]  194 	push	a
+      0000C2 7B 0B            [ 1]  195 	ld	a, (0x0b, sp)
+      0000C4 88               [ 1]  196 	push	a
+      0000C5 CDr00r00         [ 4]  197 	call	_digitalWrite
+      0000C8 5B 02            [ 2]  198 	addw	sp, #2
+      0000CA                        199 00103$:
+                                    200 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\wiring_shift.c: 50: digitalWrite(clockPin, HIGH);
+      0000CA 4B 01            [ 1]  201 	push	#0x01
+      0000CC 7B 0C            [ 1]  202 	ld	a, (0x0c, sp)
+      0000CE 88               [ 1]  203 	push	a
+      0000CF CDr00r00         [ 4]  204 	call	_digitalWrite
+      0000D2 5B 02            [ 2]  205 	addw	sp, #2
+                                    206 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\wiring_shift.c: 51: digitalWrite(clockPin, LOW);		
+      0000D4 4B 00            [ 1]  207 	push	#0x00
+      0000D6 7B 0C            [ 1]  208 	ld	a, (0x0c, sp)
+      0000D8 88               [ 1]  209 	push	a
+      0000D9 CDr00r00         [ 4]  210 	call	_digitalWrite
+      0000DC 5B 02            [ 2]  211 	addw	sp, #2
+                                    212 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\wiring_shift.c: 44: for (i = 0; i < 8; i++)  {
+      0000DE 0C 01            [ 1]  213 	inc	(0x01, sp)
+      0000E0 7B 01            [ 1]  214 	ld	a, (0x01, sp)
+      0000E2 A1 08            [ 1]  215 	cp	a, #0x08
+      0000E4 24 03            [ 1]  216 	jrnc	00137$
+      0000E6 CCr00r68         [ 2]  217 	jp	00105$
+      0000E9                        218 00137$:
+      0000E9 5B 07            [ 2]  219 	addw	sp, #7
+      0000EB 81               [ 4]  220 	ret
+                                    221 	.area CODE
+                                    222 	.area INITIALIZER
+                                    223 	.area CABS (ABS)

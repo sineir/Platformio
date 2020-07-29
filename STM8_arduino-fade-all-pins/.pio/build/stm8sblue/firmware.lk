@@ -1,0 +1,16 @@
+-muwx
+-i .pio\build\stm8sblue\firmware.ihx
+-Y
+-I 0x0400
+-C 0x2000
+-b HOME = 0x8000
+-b DATA = 0x0001
+-k C:\Users\sineirx\.platformio\packages\toolchain-sdcc@1.30603.9771\lib\stm8
+-k C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\STM8S_StdPeriph_Driver\lib
+-l .pio\build\stm8sblue\libFrameworkArduinoVariant.lib
+-l .pio\build\stm8sblue\libFrameworkArduino.lib
+-l stm8
+-l STM8S103
+.pio\build\stm8sblue\src\ade-all-pins.c.rel
+
+-e

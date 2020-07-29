@@ -1,0 +1,201 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 3.6.3 #9771 (MINGW32)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module WMath
+                                      6 	.optsdcc -mstm8
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _map
+                                     12 	.globl _random_minmax
+                                     13 	.globl _random
+                                     14 	.globl _randomSeed
+                                     15 	.globl _srand
+                                     16 	.globl _rand
+                                     17 ;--------------------------------------------------------
+                                     18 ; ram data
+                                     19 ;--------------------------------------------------------
+                                     20 	.area DATA
+                                     21 ;--------------------------------------------------------
+                                     22 ; ram data
+                                     23 ;--------------------------------------------------------
+                                     24 	.area INITIALIZED
+                                     25 ;--------------------------------------------------------
+                                     26 ; absolute external ram data
+                                     27 ;--------------------------------------------------------
+                                     28 	.area DABS (ABS)
+                                     29 ;--------------------------------------------------------
+                                     30 ; global & static initialisations
+                                     31 ;--------------------------------------------------------
+                                     32 	.area HOME
+                                     33 	.area GSINIT
+                                     34 	.area GSFINAL
+                                     35 	.area GSINIT
+                                     36 ;--------------------------------------------------------
+                                     37 ; Home
+                                     38 ;--------------------------------------------------------
+                                     39 	.area HOME
+                                     40 	.area HOME
+                                     41 ;--------------------------------------------------------
+                                     42 ; code
+                                     43 ;--------------------------------------------------------
+                                     44 	.area CODE
+                                     45 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\WMath.c: 32: void randomSeed(unsigned long seed)
+                                     46 ;	-----------------------------------------
+                                     47 ;	 function randomSeed
+                                     48 ;	-----------------------------------------
+      000000                         49 _randomSeed:
+                                     50 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\WMath.c: 34: if (seed != 0) {
+      000000 1E 05            [ 2]   51 	ldw	x, (0x05, sp)
+      000002 26 05            [ 1]   52 	jrne	00109$
+      000004 1E 03            [ 2]   53 	ldw	x, (0x03, sp)
+      000006 26 01            [ 1]   54 	jrne	00109$
+      000008 81               [ 4]   55 	ret
+      000009                         56 00109$:
+                                     57 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\WMath.c: 35: srand(seed);
+      000009 1E 05            [ 2]   58 	ldw	x, (0x05, sp)
+      00000B 89               [ 2]   59 	pushw	x
+      00000C CDr00r00         [ 4]   60 	call	_srand
+      00000F 5B 02            [ 2]   61 	addw	sp, #2
+      000011 81               [ 4]   62 	ret
+                                     63 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\WMath.c: 39: long random(long howbig)
+                                     64 ;	-----------------------------------------
+                                     65 ;	 function random
+                                     66 ;	-----------------------------------------
+      000012                         67 _random:
+      000012 52 04            [ 2]   68 	sub	sp, #4
+                                     69 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\WMath.c: 41: if (howbig == 0) {
+      000014 1E 09            [ 2]   70 	ldw	x, (0x09, sp)
+      000016 26 09            [ 1]   71 	jrne	00102$
+      000018 1E 07            [ 2]   72 	ldw	x, (0x07, sp)
+      00001A 26 05            [ 1]   73 	jrne	00102$
+                                     74 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\WMath.c: 42: return 0;
+      00001C 5F               [ 1]   75 	clrw	x
+      00001D 90 5F            [ 1]   76 	clrw	y
+      00001F 20 1D            [ 2]   77 	jra	00103$
+      000021                         78 00102$:
+                                     79 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\WMath.c: 44: return rand() % howbig;
+      000021 CDr00r00         [ 4]   80 	call	_rand
+      000024 9E               [ 1]   81 	ld	a, xh
+      000025 49               [ 1]   82 	rlc	a
+      000026 4F               [ 1]   83 	clr	a
+      000027 A2 00            [ 1]   84 	sbc	a, #0x00
+      000029 6B 02            [ 1]   85 	ld	(0x02, sp), a
+      00002B 6B 01            [ 1]   86 	ld	(0x01, sp), a
+      00002D 16 09            [ 2]   87 	ldw	y, (0x09, sp)
+      00002F 90 89            [ 2]   88 	pushw	y
+      000031 16 09            [ 2]   89 	ldw	y, (0x09, sp)
+      000033 90 89            [ 2]   90 	pushw	y
+      000035 89               [ 2]   91 	pushw	x
+      000036 1E 07            [ 2]   92 	ldw	x, (0x07, sp)
+      000038 89               [ 2]   93 	pushw	x
+      000039 CDr00r00         [ 4]   94 	call	__modslong
+      00003C 5B 08            [ 2]   95 	addw	sp, #8
+      00003E                         96 00103$:
+      00003E 5B 04            [ 2]   97 	addw	sp, #4
+      000040 81               [ 4]   98 	ret
+                                     99 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\WMath.c: 47: long random_minmax(long howsmall, long howbig)
+                                    100 ;	-----------------------------------------
+                                    101 ;	 function random_minmax
+                                    102 ;	-----------------------------------------
+      000041                        103 _random_minmax:
+                                    104 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\WMath.c: 51: if (howsmall >= howbig) {
+      000041 1E 05            [ 2]  105 	ldw	x, (0x05, sp)
+      000043 13 09            [ 2]  106 	cpw	x, (0x09, sp)
+      000045 7B 04            [ 1]  107 	ld	a, (0x04, sp)
+      000047 12 08            [ 1]  108 	sbc	a, (0x08, sp)
+      000049 7B 03            [ 1]  109 	ld	a, (0x03, sp)
+      00004B 12 07            [ 1]  110 	sbc	a, (0x07, sp)
+      00004D 2F 05            [ 1]  111 	jrslt	00102$
+                                    112 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\WMath.c: 52: return howsmall;
+      00004F 1E 05            [ 2]  113 	ldw	x, (0x05, sp)
+      000051 16 03            [ 2]  114 	ldw	y, (0x03, sp)
+      000053 81               [ 4]  115 	ret
+      000054                        116 00102$:
+                                    117 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\WMath.c: 54: diff = howbig - howsmall;
+      000054 16 09            [ 2]  118 	ldw	y, (0x09, sp)
+      000056 72 F2 05         [ 2]  119 	subw	y, (0x05, sp)
+      000059 7B 08            [ 1]  120 	ld	a, (0x08, sp)
+      00005B 12 04            [ 1]  121 	sbc	a, (0x04, sp)
+      00005D 97               [ 1]  122 	ld	xl, a
+      00005E 7B 07            [ 1]  123 	ld	a, (0x07, sp)
+      000060 12 03            [ 1]  124 	sbc	a, (0x03, sp)
+      000062 95               [ 1]  125 	ld	xh, a
+                                    126 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\WMath.c: 55: return random(diff) + howsmall;
+      000063 90 89            [ 2]  127 	pushw	y
+      000065 89               [ 2]  128 	pushw	x
+      000066 CDr00r12         [ 4]  129 	call	_random
+      000069 5B 04            [ 2]  130 	addw	sp, #4
+      00006B 51               [ 1]  131 	exgw	x, y
+      00006C 72 F9 05         [ 2]  132 	addw	y, (0x05, sp)
+      00006F 9F               [ 1]  133 	ld	a, xl
+      000070 19 04            [ 1]  134 	adc	a, (0x04, sp)
+      000072 02               [ 1]  135 	rlwa	x
+      000073 19 03            [ 1]  136 	adc	a, (0x03, sp)
+      000075 95               [ 1]  137 	ld	xh, a
+      000076 51               [ 1]  138 	exgw	x, y
+      000077 81               [ 4]  139 	ret
+                                    140 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\WMath.c: 58: long map(long x, long in_min, long in_max, long out_min, long out_max)
+                                    141 ;	-----------------------------------------
+                                    142 ;	 function map
+                                    143 ;	-----------------------------------------
+      000078                        144 _map:
+      000078 52 0C            [ 2]  145 	sub	sp, #12
+                                    146 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\WMath.c: 60: return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+      00007A 16 11            [ 2]  147 	ldw	y, (0x11, sp)
+      00007C 72 F2 15         [ 2]  148 	subw	y, (0x15, sp)
+      00007F 7B 10            [ 1]  149 	ld	a, (0x10, sp)
+      000081 12 14            [ 1]  150 	sbc	a, (0x14, sp)
+      000083 6B 02            [ 1]  151 	ld	(0x02, sp), a
+      000085 7B 0F            [ 1]  152 	ld	a, (0x0f, sp)
+      000087 12 13            [ 1]  153 	sbc	a, (0x13, sp)
+      000089 6B 01            [ 1]  154 	ld	(0x01, sp), a
+      00008B 1E 21            [ 2]  155 	ldw	x, (0x21, sp)
+      00008D 72 F0 1D         [ 2]  156 	subw	x, (0x1d, sp)
+      000090 7B 20            [ 1]  157 	ld	a, (0x20, sp)
+      000092 12 1C            [ 1]  158 	sbc	a, (0x1c, sp)
+      000094 6B 06            [ 1]  159 	ld	(0x06, sp), a
+      000096 7B 1F            [ 1]  160 	ld	a, (0x1f, sp)
+      000098 12 1B            [ 1]  161 	sbc	a, (0x1b, sp)
+      00009A 6B 05            [ 1]  162 	ld	(0x05, sp), a
+      00009C 89               [ 2]  163 	pushw	x
+      00009D 1E 07            [ 2]  164 	ldw	x, (0x07, sp)
+      00009F 89               [ 2]  165 	pushw	x
+      0000A0 90 89            [ 2]  166 	pushw	y
+      0000A2 1E 07            [ 2]  167 	ldw	x, (0x07, sp)
+      0000A4 89               [ 2]  168 	pushw	x
+      0000A5 CDr00r00         [ 4]  169 	call	__mullong
+      0000A8 5B 08            [ 2]  170 	addw	sp, #8
+      0000AA 1F 0B            [ 2]  171 	ldw	(0x0b, sp), x
+      0000AC 17 09            [ 2]  172 	ldw	(0x09, sp), y
+      0000AE 16 19            [ 2]  173 	ldw	y, (0x19, sp)
+      0000B0 72 F2 15         [ 2]  174 	subw	y, (0x15, sp)
+      0000B3 7B 18            [ 1]  175 	ld	a, (0x18, sp)
+      0000B5 12 14            [ 1]  176 	sbc	a, (0x14, sp)
+      0000B7 97               [ 1]  177 	ld	xl, a
+      0000B8 7B 17            [ 1]  178 	ld	a, (0x17, sp)
+      0000BA 12 13            [ 1]  179 	sbc	a, (0x13, sp)
+      0000BC 95               [ 1]  180 	ld	xh, a
+      0000BD 90 89            [ 2]  181 	pushw	y
+      0000BF 89               [ 2]  182 	pushw	x
+      0000C0 1E 0F            [ 2]  183 	ldw	x, (0x0f, sp)
+      0000C2 89               [ 2]  184 	pushw	x
+      0000C3 1E 0F            [ 2]  185 	ldw	x, (0x0f, sp)
+      0000C5 89               [ 2]  186 	pushw	x
+      0000C6 CDr00r00         [ 4]  187 	call	__divslong
+      0000C9 5B 08            [ 2]  188 	addw	sp, #8
+      0000CB 51               [ 1]  189 	exgw	x, y
+      0000CC 72 F9 1D         [ 2]  190 	addw	y, (0x1d, sp)
+      0000CF 9F               [ 1]  191 	ld	a, xl
+      0000D0 19 1C            [ 1]  192 	adc	a, (0x1c, sp)
+      0000D2 02               [ 1]  193 	rlwa	x
+      0000D3 19 1B            [ 1]  194 	adc	a, (0x1b, sp)
+      0000D5 95               [ 1]  195 	ld	xh, a
+      0000D6 51               [ 1]  196 	exgw	x, y
+      0000D7 5B 0C            [ 2]  197 	addw	sp, #12
+      0000D9 81               [ 4]  198 	ret
+                                    199 	.area CODE
+                                    200 	.area INITIALIZER
+                                    201 	.area CABS (ABS)

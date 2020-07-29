@@ -1,0 +1,174 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 3.6.3 #9771 (MINGW32)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module WInterrupts
+                                      6 	.optsdcc -mstm8
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _attachInterrupt
+                                     12 	.globl _detachInterrupt
+                                     13 	.globl _EXTI_PORTA_IRQHandler
+                                     14 	.globl _EXTI_PORTB_IRQHandler
+                                     15 	.globl _EXTI_PORTC_IRQHandler
+                                     16 	.globl _EXTI_PORTD_IRQHandler
+                                     17 	.globl _EXTI_PORTE_IRQHandler
+                                     18 	.globl _TIM1_CAP_COM_IRQHandler
+                                     19 ;--------------------------------------------------------
+                                     20 ; ram data
+                                     21 ;--------------------------------------------------------
+                                     22 	.area DATA
+                                     23 ;--------------------------------------------------------
+                                     24 ; ram data
+                                     25 ;--------------------------------------------------------
+                                     26 	.area INITIALIZED
+      000000                         27 _intFunc:
+      000000                         28 	.ds 18
+                                     29 ;--------------------------------------------------------
+                                     30 ; absolute external ram data
+                                     31 ;--------------------------------------------------------
+                                     32 	.area DABS (ABS)
+                                     33 ;--------------------------------------------------------
+                                     34 ; global & static initialisations
+                                     35 ;--------------------------------------------------------
+                                     36 	.area HOME
+                                     37 	.area GSINIT
+                                     38 	.area GSFINAL
+                                     39 	.area GSINIT
+                                     40 ;--------------------------------------------------------
+                                     41 ; Home
+                                     42 ;--------------------------------------------------------
+                                     43 	.area HOME
+                                     44 	.area HOME
+                                     45 ;--------------------------------------------------------
+                                     46 ; code
+                                     47 ;--------------------------------------------------------
+                                     48 	.area CODE
+                                     49 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\WInterrupts.c: 33: static void nothing(void) {
+                                     50 ;	-----------------------------------------
+                                     51 ;	 function nothing
+                                     52 ;	-----------------------------------------
+      000000                         53 _nothing:
+                                     54 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\WInterrupts.c: 34: }
+      000000 81               [ 4]   55 	ret
+                                     56 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\WInterrupts.c: 71: void attachInterrupt(uint8_t interruptNum, void (*userFunc)(void), int mode) {
+                                     57 ;	-----------------------------------------
+                                     58 ;	 function attachInterrupt
+                                     59 ;	-----------------------------------------
+      000001                         60 _attachInterrupt:
+      000001 52 02            [ 2]   61 	sub	sp, #2
+                                     62 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\WInterrupts.c: 72: if(interruptNum < EXTERNAL_NUM_INTERRUPTS) {
+      000003 7B 05            [ 1]   63 	ld	a, (0x05, sp)
+      000005 A1 09            [ 1]   64 	cp	a, #0x09
+      000007 24 10            [ 1]   65 	jrnc	00103$
+                                     66 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\WInterrupts.c: 73: intFunc[interruptNum] = userFunc;
+      000009 AEr00r00         [ 2]   67 	ldw	x, #_intFunc+0
+      00000C 1F 01            [ 2]   68 	ldw	(0x01, sp), x
+      00000E 5F               [ 1]   69 	clrw	x
+      00000F 7B 05            [ 1]   70 	ld	a, (0x05, sp)
+      000011 97               [ 1]   71 	ld	xl, a
+      000012 58               [ 2]   72 	sllw	x
+      000013 72 FB 01         [ 2]   73 	addw	x, (0x01, sp)
+      000016 16 06            [ 2]   74 	ldw	y, (0x06, sp)
+      000018 FF               [ 2]   75 	ldw	(x), y
+      000019                         76 00103$:
+      000019 5B 02            [ 2]   77 	addw	sp, #2
+      00001B 81               [ 4]   78 	ret
+                                     79 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\WInterrupts.c: 189: void detachInterrupt(uint8_t interruptNum) {
+                                     80 ;	-----------------------------------------
+                                     81 ;	 function detachInterrupt
+                                     82 ;	-----------------------------------------
+      00001C                         83 _detachInterrupt:
+      00001C 52 02            [ 2]   84 	sub	sp, #2
+                                     85 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\WInterrupts.c: 190: if(interruptNum < EXTERNAL_NUM_INTERRUPTS) {
+      00001E 7B 05            [ 1]   86 	ld	a, (0x05, sp)
+      000020 A1 09            [ 1]   87 	cp	a, #0x09
+      000022 24 12            [ 1]   88 	jrnc	00103$
+                                     89 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\WInterrupts.c: 277: intFunc[interruptNum] = nothing;
+      000024 AEr00r00         [ 2]   90 	ldw	x, #_intFunc+0
+      000027 1F 01            [ 2]   91 	ldw	(0x01, sp), x
+      000029 5F               [ 1]   92 	clrw	x
+      00002A 7B 05            [ 1]   93 	ld	a, (0x05, sp)
+      00002C 97               [ 1]   94 	ld	xl, a
+      00002D 58               [ 2]   95 	sllw	x
+      00002E 72 FB 01         [ 2]   96 	addw	x, (0x01, sp)
+      000031 90 AEr00r00      [ 2]   97 	ldw	y, #_nothing
+      000035 FF               [ 2]   98 	ldw	(x), y
+      000036                         99 00103$:
+      000036 5B 02            [ 2]  100 	addw	sp, #2
+      000038 81               [ 4]  101 	ret
+                                    102 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\WInterrupts.c: 303: IMPLEMENT_ISR(EXTI_PORTA_IRQHandler,		INT_PORTA) /* EXTI PORTA */
+                                    103 ;	-----------------------------------------
+                                    104 ;	 function EXTI_PORTA_IRQHandler
+                                    105 ;	-----------------------------------------
+      000039                        106 _EXTI_PORTA_IRQHandler:
+                                    107 ;	naked function: no prologue.
+      000039 AEr00r00         [ 2]  108 	ldw	x, #_intFunc+0
+      00003C FE               [ 2]  109 	ldw	x, (x)
+      00003D FD               [ 4]  110 	call	(x)
+      00003E 80               [11]  111 	iret
+                                    112 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\WInterrupts.c: 304: IMPLEMENT_ISR(EXTI_PORTB_IRQHandler,		INT_PORTB) /* EXTI PORTB */
+                                    113 ;	-----------------------------------------
+                                    114 ;	 function EXTI_PORTB_IRQHandler
+                                    115 ;	-----------------------------------------
+      00003F                        116 _EXTI_PORTB_IRQHandler:
+                                    117 ;	naked function: no prologue.
+      00003F AEr00r02         [ 2]  118 	ldw	x, #_intFunc+2
+      000042 FE               [ 2]  119 	ldw	x, (x)
+      000043 FD               [ 4]  120 	call	(x)
+      000044 80               [11]  121 	iret
+                                    122 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\WInterrupts.c: 305: IMPLEMENT_ISR(EXTI_PORTC_IRQHandler,		INT_PORTC) /* EXTI PORTC */
+                                    123 ;	-----------------------------------------
+                                    124 ;	 function EXTI_PORTC_IRQHandler
+                                    125 ;	-----------------------------------------
+      000045                        126 _EXTI_PORTC_IRQHandler:
+                                    127 ;	naked function: no prologue.
+      000045 AEr00r04         [ 2]  128 	ldw	x, #_intFunc+4
+      000048 FE               [ 2]  129 	ldw	x, (x)
+      000049 FD               [ 4]  130 	call	(x)
+      00004A 80               [11]  131 	iret
+                                    132 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\WInterrupts.c: 306: IMPLEMENT_ISR(EXTI_PORTD_IRQHandler,		INT_PORTD) /* EXTI PORTD */
+                                    133 ;	-----------------------------------------
+                                    134 ;	 function EXTI_PORTD_IRQHandler
+                                    135 ;	-----------------------------------------
+      00004B                        136 _EXTI_PORTD_IRQHandler:
+                                    137 ;	naked function: no prologue.
+      00004B AEr00r06         [ 2]  138 	ldw	x, #_intFunc+6
+      00004E FE               [ 2]  139 	ldw	x, (x)
+      00004F FD               [ 4]  140 	call	(x)
+      000050 80               [11]  141 	iret
+                                    142 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\WInterrupts.c: 307: IMPLEMENT_ISR(EXTI_PORTE_IRQHandler,		INT_PORTE) /* EXTI PORTE */
+                                    143 ;	-----------------------------------------
+                                    144 ;	 function EXTI_PORTE_IRQHandler
+                                    145 ;	-----------------------------------------
+      000051                        146 _EXTI_PORTE_IRQHandler:
+                                    147 ;	naked function: no prologue.
+      000051 AEr00r08         [ 2]  148 	ldw	x, #_intFunc+8
+      000054 FE               [ 2]  149 	ldw	x, (x)
+      000055 FD               [ 4]  150 	call	(x)
+      000056 80               [11]  151 	iret
+                                    152 ;	C:\Users\sineirx\.platformio\packages\framework-arduinoststm8\cores\sduino\WInterrupts.c: 308: IMPLEMENT_ISR(TIM1_CAP_COM_IRQHandler,		INT_TIM1_CAPCOM)
+                                    153 ;	-----------------------------------------
+                                    154 ;	 function TIM1_CAP_COM_IRQHandler
+                                    155 ;	-----------------------------------------
+      000057                        156 _TIM1_CAP_COM_IRQHandler:
+                                    157 ;	naked function: no prologue.
+      000057 AEr00r0A         [ 2]  158 	ldw	x, #_intFunc+10
+      00005A FE               [ 2]  159 	ldw	x, (x)
+      00005B FD               [ 4]  160 	call	(x)
+      00005C 80               [11]  161 	iret
+                                    162 	.area CODE
+                                    163 	.area INITIALIZER
+      000000                        164 __xinit__intFunc:
+      000000r00r00                  165 	.dw _nothing
+      000002r00r00                  166 	.dw _nothing
+      000004r00r00                  167 	.dw _nothing
+      000006r00r00                  168 	.dw _nothing
+      000008r00r00                  169 	.dw _nothing
+      00000Ar00r00                  170 	.dw _nothing
+      00000Cr00r00                  171 	.dw _nothing
+      00000Er00r00                  172 	.dw _nothing
+      000010r00r00                  173 	.dw _nothing
+                                    174 	.area CABS (ABS)
