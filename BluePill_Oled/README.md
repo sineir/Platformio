@@ -1,3 +1,6 @@
+# platformio.ini
+
+```
 [env:bluepill_f103c8]
 platform = ststm32
 board = bluepill_f103c8
@@ -10,3 +13,4 @@ lib_deps =
   Adafruit BusIO
   Wire
   SPI
+  ```
